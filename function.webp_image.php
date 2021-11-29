@@ -43,7 +43,7 @@ function smarty_function_webp_image($params, &$smarty)
     #Get source info
     $pathinfo = pathinfo($path);
 
-    $extension = $pathinfo['extension'];
+    $extension = strtolower($pathinfo['extension']);
 
     $destination = $root_path . '/tmp/cache/img-' . md5_file($path) . '.webp';
 
