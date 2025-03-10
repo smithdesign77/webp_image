@@ -22,8 +22,7 @@
 # Or read it online: http://www.gnu.org/licenses/licenses.html#GPL
 #-------------------------------------------------------------------------
 
-function smarty_function_webp_image($params, &$smarty)
-{
+function smarty_function_webp_image($params, &$smarty) {
   $gCms = CmsApp::get_instance();
 
   $root_path = $gCms->config['root_path'];
@@ -52,8 +51,6 @@ function smarty_function_webp_image($params, &$smarty)
 
       return str_replace($root_path . '/', '', $destination);
 
-    if (strpos($_SERVER['HTTP_ACCEPT'], 'image/webp') !== false) {
-
       if ($extension == 'jpeg' || $extension == 'jpg') $image = imagecreatefromjpeg($path);
 
       elseif ($extension == 'gif') $image = imagecreatefromgif($path);
@@ -71,16 +68,9 @@ function smarty_function_webp_image($params, &$smarty)
 
       else return "Error: the image has not been created";
 
-      # If the browser supports webp. Hello Safari!
-      if (file_exists($destination) && strpos($_SERVER['HTTP_ACCEPT'], 'image/webp') !== false) {
-
         #Return encoded image
         return str_replace($root_path . '/', '', $destination);
-      } else {
 
-        return $original_src;
-      }
-    } else return $original_src;
   } else {
 
     return 'Error: the image path is not valid';
@@ -90,8 +80,7 @@ function smarty_function_webp_image($params, &$smarty)
 /**
  * Help text
  */
-function smarty_cms_help_function_webp_image()
-{
+function smarty_cms_help_function_webp_image() {
 ?>
   <h3>What does this do?</h3>
   <p>This plugin converts an image to webp format.</p>
@@ -105,14 +94,14 @@ function smarty_cms_help_function_webp_image()
 /**
  * About text
  */
-function smarty_cms_about_function_webp_image()
-{
+function smarty_cms_about_function_webp_image() {
 ?>
   <p><b>Plugin author: Yuri Haperski (wdwp@yandex.ru)</b></p>
   <p><b>Version:</b> 1.0</p>
   <p><b>Change History:</b></p>
   <p><b>20-03-2021 - Initial release (v1.0)</b></p>
   <p><b>20-11-2021 - Some improvements (v1.1)</b></p>
+  <p><b>27-02-2025 - Removed ['HTTP_ACCEPT'] support requests (v1.2) by smithdesign77</b></p>
 <?php
 } // End Function
 ?>
